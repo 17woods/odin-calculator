@@ -15,8 +15,8 @@ function add(a, b) {
 };
 
 function operate(a, b, op) {
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
 
     switch(op) {
         case '+':
@@ -43,7 +43,11 @@ function clicked(obj) {
         } else {
             second += q;
         }
-    } else if (ops.includes(q)) {
+    } else if (ops.includes(q) && displayStatus == 1) {
+        first = operate(first, second, operation);
+        operation = q;
+        second = '';
+    } else if (ops.includes(q) && displayStatus == 0) {
         displayStatus = 1;
         operation = q;
     } else if (q === '=') {
@@ -154,7 +158,7 @@ let operation = "E";
 let displayStatus = 0;
 let first = '';
 let second = '';
-const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
 const ops = ['+', '-', '*', '/'];
 
 main();
