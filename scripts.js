@@ -18,26 +18,34 @@ function operate(a, b, op) {
     a = parseFloat(a);
     b = parseFloat(b);
 
+    if (b == 0 && op == '/') {
+        return "Fuck you eat shit";
+    };
+
     switch(op) {
         case '+':
-            return add(a, b);
+            return parseFloat(add(a, b).toFixed(8));
         case '-':
-            return sub(a, b);
+            return parseFloat(sub(a, b).toFixed(8));
         case '*':
-            return mult(a, b);
+            return parseFloat(mult(a, b).toFixed(8));
         case '/':
-            return divi(a, b);
+            return parseFloat(divi(a, b).toFixed(8));
         default:
             return "E0";
     };
 };
 
-function clicked(obj) {
+function clicked(obj) { // I barely understand why this works and I literally just wrote it
     const display = document.querySelector(".display");
 
     q = obj.target.innerHTML;
-
-    if (nums.includes(q)) {
+    if (q == 'AC') {
+        operation = "E";
+        displayStatus = 0;
+        first = '';
+        second = '';
+    } else if (nums.includes(q)) {
         if (displayStatus == 0) {
             first += q;
         } else {
@@ -145,6 +153,9 @@ function main() {
                 break;
             case 43:
                 n.innerHTML = "=";
+                break;
+            case 40:
+                n.innerHTML = "AC"
                 break;
         };
 
